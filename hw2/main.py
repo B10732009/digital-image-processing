@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt  # plt is used to display pictures and histogram
 import matplotlib.image as mpimg  # mpimg is used to load pictures
 import numpy as np
 import sys
-import dct, fdct
+import dct, fdct, dwt
 
 def checkArg(args):
     if len(args) != 3:
@@ -11,7 +11,7 @@ def checkArg(args):
         return 1
     elif '--fdct' in args:
         return 2
-    elif '--wt' in args:
+    elif '--dwt' in args:
         return 3
 
 def visualize(originImg, transImg, inverseImg):
@@ -69,6 +69,11 @@ def main():
         tImg = fdct.fdct(img, n)
         print('running FIDCT...')
         itImg = fdct.fidct(tImg, n)
+    elif flag == 3:
+        print('running DWT...')
+        tImg = dwt.dwt(img, n)
+        print('running IDWT...')
+        itImg = dwt.idwt(tImg, n)
     
     # show canvas
     visualize(img, tImg, itImg)
