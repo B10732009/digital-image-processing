@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt  # plt is used to display pictures and histogram
 import matplotlib.image as mpimg  # mpimg is used to load pictures
 import numpy as np
 import sys
-import dct
+import dct, fdct
 
 def checkArg(args):
     if len(args) != 3:
@@ -13,11 +13,6 @@ def checkArg(args):
         return 2
     elif '--wt' in args:
         return 3
-
-# def heWrapper(img):
-#     npImg = np.array(img)
-#     row, col = npImg.shape
-#     return np.array(histogramEqualization(npImg, row, col))
 
 def visualize(originImg, transImg, inverseImg):
     # construct a canvas to display the results
@@ -69,6 +64,11 @@ def main():
         tImg = dct.dct(img, n)
         print('running IDCT...')
         itImg = dct.idct(tImg, n)
+    elif flag == 2:
+        print('running FDCT...')
+        tImg = fdct.fdct(img, n)
+        print('running FIDCT...')
+        itImg = fdct.fidct(tImg, n)
     
     # show canvas
     visualize(img, tImg, itImg)

@@ -3,7 +3,7 @@
 CC = g++
 CFLAGS = -g -Wall -O3 -Wall -shared -std=c++11 -fPIC
 
-SRC = dct.cpp
+SRC = dct.cpp fdct.cpp
 TARGET = $(patsubst %.cpp, %.so, $(SRC))
 
 all: $(TARGET)
