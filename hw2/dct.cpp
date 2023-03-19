@@ -1,4 +1,5 @@
 #include <cmath>
+#include <ctime>
 #include <iostream>
 #include <vector>
 
@@ -21,6 +22,9 @@ inline double C(int i)
 
 img_t dct(img_t input, int n)
 {
+  std::clock_t start, end;
+  start = std::clock();
+
   img_t output = input;
   for (int i = 0; i < n; i++)
   {
@@ -45,11 +49,18 @@ img_t dct(img_t input, int n)
       output[i][j] = std::round(temp);
     }
   }
+
+  end = std::clock();
+  std::cout << "finishing DCT of " << n << "*" << n << " image in " << (double)(end - start) / CLOCKS_PER_SEC
+            << " second(s).\n";
   return output;
 }
 
 img_t idct(img_t input, int n)
 {
+  std::clock_t start, end;
+  start = std::clock();
+
   img_t output = input;
   for (int x = 0; x < n; x++)
   {
@@ -75,6 +86,10 @@ img_t idct(img_t input, int n)
       output[x][y] = std::round(temp);
     }
   }
+
+  end = std::clock();
+  std::cout << "finishing IDCT of " << n << "*" << n << " image in " << (double)(end - start) / CLOCKS_PER_SEC
+            << " second(s).\n";
   return output;
 }
 

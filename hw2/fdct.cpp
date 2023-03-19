@@ -1,4 +1,5 @@
 #include <cmath>
+#include <ctime>
 #include <iostream>
 #include <vector>
 
@@ -27,6 +28,9 @@ inline double CT(int i, int j, int n)
 
 img_t fdct(img_t input, int n)
 {
+  std::clock_t start, end;
+  start = std::clock();
+
   img_t output = input;
   std::vector<std::vector<double>> temp(n, std::vector<double>(n));
 
@@ -52,11 +56,18 @@ img_t fdct(img_t input, int n)
       output[i][j] = (int)std::round(temp2);
     }
   }
+
+  end = std::clock();
+  std::cout << "finishing FDCT of " << n << "*" << n << " image in " << (double)(end - start) / CLOCKS_PER_SEC
+            << " second(s).\n";
   return output;
 }
 
 img_t fidct(img_t input, int n)
 {
+  std::clock_t start, end;
+  start = std::clock();
+
   img_t output = input;
   std::vector<std::vector<double>> temp(n, std::vector<double>(n));
 
@@ -87,6 +98,10 @@ img_t fidct(img_t input, int n)
       output[i][j] = (int)std::round(temp2);
     }
   }
+
+  end = std::clock();
+  std::cout << "finishing FIDCT of " << n << "*" << n << " image in " << (double)(end - start) / CLOCKS_PER_SEC
+            << " second(s).\n";
   return output;
 }
 
